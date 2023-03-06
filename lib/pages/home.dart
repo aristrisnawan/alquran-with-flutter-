@@ -1,4 +1,5 @@
 import 'package:alquran_aplication/pages/list_surah.dart';
+import 'package:alquran_aplication/pages/poster.dart';
 import 'package:alquran_aplication/theme/colorTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,28 +61,8 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 20,
             ),
-            // NOTE: Card
-            Container(
-              width: MediaQuery.of(context).size.width / 1,
-              height: 150,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        colorTheme().primaryColor,
-                        colorTheme().greenColor
-                      ]),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  )),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image(
-                  image: AssetImage("assets/quran.png"),
-                ),
-              ),
-            ),
+            // NOTE: Poster
+            PosterWidget(),
             SizedBox(
               height: 20,
             ),
@@ -97,7 +78,7 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.5,
+              height: MediaQuery.of(context).size.height * 0.43,
               child: ListView(
                 children: [
                   Column(
