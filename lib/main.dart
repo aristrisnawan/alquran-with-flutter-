@@ -1,5 +1,6 @@
 import 'package:alquran_aplication/model/surah_model.dart';
 import 'package:alquran_aplication/pages/home.dart';
+import 'package:alquran_aplication/pages/surah.dart';
 import 'package:alquran_aplication/provider/surah_provider.dart';
 import 'package:alquran_aplication/theme/colorTheme.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,8 @@ class _MyAppState extends State<MyApp> {
           providers: [
             ChangeNotifierProvider(create: ((context) => SurahProvider()))
           ],
-          child: HomePage(),
+          // child: HomePage(),
+          child: SurahPage(),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
