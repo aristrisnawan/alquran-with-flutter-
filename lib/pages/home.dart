@@ -1,8 +1,11 @@
 import 'package:alquran_aplication/pages/list_surah.dart';
+import 'package:alquran_aplication/pages/loading.dart';
 import 'package:alquran_aplication/pages/poster.dart';
+import 'package:alquran_aplication/provider/surah_provider.dart';
 import 'package:alquran_aplication/theme/colorTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,6 +16,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final space = 20.0;
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<SurahProvider>(context, listen: false).getData();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -77,37 +87,35 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 10,
             ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.43,
-              child: ListView(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ListSurah(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      ListSurah(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      ListSurah(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      ListSurah(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      ListSurah(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            Consumer<SurahProvider>(
+              builder: (context, value, child) {
+                if (value.listSurah.isEmpty) {
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.43,
+                    child:  ListView.builder(
+                      itemBuilder: ((context, index) {
+                        return LoadingCard();
+                      })
+                      )
+                  );
+                }else{
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.43,
+                    child: ListView.builder(
+                        itemCount: value.listSurah.length,
+                        itemBuilder: ((context, index) {
+                          final data = value.listSurah[index];
+                          print("naon ${data.toString()}");
+                          return ListSurah(
+                            noSurah: data.nomor,
+                            nama: data.nama,
+                            namaLatin: data.namaLatin,
+                            tempatTurun: data.tempatTurun,
+                            jumlahAyat: data.jumlahAyat,
+                          );
+                        })));
+                }
+              },
             )
           ],
         ),

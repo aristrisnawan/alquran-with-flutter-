@@ -3,14 +3,20 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../theme/colorTheme.dart';
 
-class ListSurah extends StatefulWidget {
-  const ListSurah({super.key});
+class ListSurah extends StatelessWidget {
+  int noSurah;
+  String nama;
+  String namaLatin;
+  String tempatTurun;
+  int jumlahAyat;
+  ListSurah(
+      {super.key,
+      required this.noSurah,
+      required this.nama,
+      required this.tempatTurun,
+      required this.jumlahAyat,
+      required this.namaLatin});
 
-  @override
-  State<ListSurah> createState() => _ListSurahState();
-}
-
-class _ListSurahState extends State<ListSurah> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -30,7 +36,7 @@ class _ListSurahState extends State<ListSurah> {
                       shape: BoxShape.circle),
                   child: Center(
                     child: Text(
-                      "1",
+                      "${noSurah}",
                       style: GoogleFonts.poppins(
                           fontSize: 14, fontWeight: FontWeight.bold),
                     ),
@@ -43,17 +49,17 @@ class _ListSurahState extends State<ListSurah> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Al-Fatihah",
+                      "${namaLatin}",
                       style: GoogleFonts.poppins(
                           fontSize: 14, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 5,
                     ),
                     Row(
                       children: [
                         Text(
-                          "MECCAN",
+                          "${tempatTurun}",
                           style: GoogleFonts.poppins(
                               fontSize: 12, color: colorTheme().grayColor),
                         ),
@@ -61,7 +67,7 @@ class _ListSurahState extends State<ListSurah> {
                           width: 10,
                         ),
                         Text(
-                          "7 VERSES",
+                          "${jumlahAyat} VERSES",
                           style: GoogleFonts.poppins(
                               fontSize: 12, color: colorTheme().grayColor),
                         ),
@@ -72,7 +78,7 @@ class _ListSurahState extends State<ListSurah> {
               ],
             ),
             Text(
-              "اَلْحَمْدُ",
+              "${nama}",
               style: GoogleFonts.poppins(
                   color: colorTheme().primaryColor,
                   fontSize: 20,

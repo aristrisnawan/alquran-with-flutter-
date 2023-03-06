@@ -39,6 +39,7 @@ dependencies:
   http: ^0.13.5
   provider: ^6.0.5
   google_fonts: ^4.0.3
+  card_loading: ^0.3.0
 
 dev_dependencies:
   flutter_test:

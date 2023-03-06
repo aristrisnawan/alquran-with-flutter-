@@ -4,15 +4,15 @@
 
 
 class Surah {
-    Surah({
-        required this.code,
-        required this.message,
-        required this.data,
+    Surah({ 
+        this.code,
+        this.message,
+        this.data,
     });
 
-    int code;
-    String message;
-    List<Datum> data;
+    int? code;
+    String? message;
+    List<Datum>? data;
 
     factory Surah.fromJson(Map<String, dynamic> json) => Surah(
         code: json["code"],
@@ -23,7 +23,7 @@ class Surah {
     Map<String, dynamic> toJson() => {
         "code": code,
         "message": message,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "data": List<dynamic>.from(data!.map((x) => x.toJson())),
     };
 }
 
