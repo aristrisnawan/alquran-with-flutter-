@@ -46,8 +46,8 @@ class _MyAppState extends State<MyApp> {
           providers: [
             ChangeNotifierProvider(create: ((context) => SurahProvider()))
           ],
-          // child: HomePage(),
-          child: SurahPage(),
+          child: HomePage(),
+          // child: SurahPage(),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[

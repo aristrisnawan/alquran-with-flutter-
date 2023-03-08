@@ -1,6 +1,7 @@
 import 'package:alquran_aplication/pages/list_surah.dart';
 import 'package:alquran_aplication/pages/loading.dart';
 import 'package:alquran_aplication/pages/poster.dart';
+import 'package:alquran_aplication/pages/surah.dart';
 import 'package:alquran_aplication/provider/surah_provider.dart';
 import 'package:alquran_aplication/theme/colorTheme.dart';
 import 'package:flutter/material.dart';
@@ -91,29 +92,37 @@ class _HomePageState extends State<HomePage> {
               builder: (context, value, child) {
                 if (value.listSurah.isEmpty) {
                   return Container(
-                    height: MediaQuery.of(context).size.height * 0.43,
-                    child:  ListView.builder(
-                      itemBuilder: ((context, index) {
+                      height: MediaQuery.of(context).size.height * 0.43,
+                      child: ListView.builder(itemBuilder: ((context, index) {
                         return LoadingCard();
-                      })
-                      )
-                  );
-                }else{
+                      })));
+                } else {
                   return Container(
-                    height: MediaQuery.of(context).size.height * 0.43,
-                    child: ListView.builder(
-                        itemCount: value.listSurah.length,
-                        itemBuilder: ((context, index) {
-                          final data = value.listSurah[index];
-                          print("naon ${data.toString()}");
-                          return ListSurah(
-                            noSurah: data.nomor,
-                            nama: data.nama,
-                            namaLatin: data.namaLatin,
-                            tempatTurun: data.tempatTurun,
-                            jumlahAyat: data.jumlahAyat,
-                          );
-                        })));
+                      height: MediaQuery.of(context).size.height * 0.43,
+                      child: ListView.builder(
+                          itemCount: value.listSurah.length,
+                          itemBuilder: ((context, index) {
+                            final data = value.listSurah[index];
+                            print("naon ${data.toString()}");
+                            return InkWell(
+                              onTap: () {
+                                value.getDetailSurah(data.nomor);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          SurahPage()),
+                                );
+                              },
+                              child: ListSurah(
+                                noSurah: data.nomor,
+                                nama: data.nama,
+                                namaLatin: data.namaLatin,
+                                tempatTurun: data.tempatTurun,
+                                jumlahAyat: data.jumlahAyat,
+                              ),
+                            );
+                          })));
                 }
               },
             )
