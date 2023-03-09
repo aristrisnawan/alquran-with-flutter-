@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../theme/colorTheme.dart';
 
 class SurahVerses extends StatelessWidget {
-  const SurahVerses({super.key});
+  String teksArab;
+  SurahVerses({super.key, required this.teksArab});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,7 @@ class SurahVerses extends StatelessWidget {
         Align(
           alignment: Alignment.centerRight,
           child: Text(
-            "ذٰلِكَ الْكِتٰبُ لَا رَيْبَ ۛ فِيْهِ ۛ هُدًى لِّلْمُتَّقِيْنَۙ",
+            "${teksArab}",
             style:
                 GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.bold),
           ),

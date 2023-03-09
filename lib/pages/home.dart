@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                             print("naon ${data.toString()}");
                             return InkWell(
                               onTap: () {
-                                value.getDetailSurah(data.nomor);
+                                Provider.of<SurahProvider>(context, listen: false).getDetailSurah(data.nomor);
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

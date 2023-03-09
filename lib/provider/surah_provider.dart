@@ -24,10 +24,20 @@ class SurahProvider extends ChangeNotifier {
 
   Future<void> getDetailSurah(int? nomor) async {
     final response = await http.get(Uri.parse("https://equran.id/api/v2/surat/${nomor}"));
-    final Map<String,dynamic> data = json.decode(response.body);
-    final List<dynamic>? sur = data["audioFull"];
-    print("hasem, ${sur}");
-    // _detailSurah = surah.map((e) => Ayat.fromJson(e)).toList();
+    // final Map<String,dynamic> data = json.decode(response.body);
+    // final List<dynamic>? sur = data["audioFull"];
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      // final List<dynamic> surat = data["data"]["ayat"];
+      final List<dynamic> surah = data["data"]["ayat"];
+      print("kalem ${surah}");
+      // _detailSurah = Ayat.fromJson(data) as List<DetailSurah>;
     notifyListeners();
+    }
+    else{
+      throw Exception('Failed load data');
+    }
+    // print("hasem, ${sur}");
+    // _detailSurah = surah.map((e) => Ayat.fromJson(e)).toList();
   }
 }
